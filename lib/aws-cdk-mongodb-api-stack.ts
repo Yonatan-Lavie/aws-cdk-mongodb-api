@@ -31,7 +31,7 @@ export class AwsCdkMongodbApiStack extends cdk.Stack {
 
 
     // Lambdas
-    const helloLambda = new lambda.Function(this, 'get-user', {
+    const helloLambda = new lambda.Function(this, 'hello', {
       runtime: lambda.Runtime.NODEJS_18_X,
       handler: 'index.handler',
       code: lambda.Code.fromAsset('src/lambdas/getUser'),
@@ -42,7 +42,7 @@ export class AwsCdkMongodbApiStack extends cdk.Stack {
       code: lambda.Code.fromAsset('src/lambdas/getUser'),
       layers: [businessLogicLayer, sharedLibrariesLayer],
     });
-    const createUserLambda = new lambda.Function(this, 'get-user', {
+    const createUserLambda = new lambda.Function(this, 'create-user', {
       runtime: lambda.Runtime.NODEJS_18_X,
       handler: 'index.handler',
       code: lambda.Code.fromAsset('src/lambdas/getUser'),
