@@ -18,7 +18,16 @@ export const handler = async (
       };
     }
   
-    const user: IUser = event.body;
+    let requestBody: IUser;
+    try {
+      requestBody = JSON.parse(event.body || '') as IUser;
+    } catch (err) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'Invalid JSON format in request body.' }),
+      };
+    }
+    const user: IUser = requestBody
   
     const newUser = new User(user);
   
